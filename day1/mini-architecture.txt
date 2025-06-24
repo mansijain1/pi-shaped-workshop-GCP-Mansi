@@ -1,0 +1,45 @@
+GCP Mini Architecture: Component Interaction
+
+2. Components Created:
+- VPC Network (custom)
+   demo-vpc-day2' with subnet 'subnet-central' (10.0.1.0/24)
+   Used to isolate and control network traffic
+
+- VM Instance (EC2 Equivalent) 
+    Created in a custom subnet inside the VPC
+    Could be running a web server, app, or CLI tools
+    Connected to the internet via default route or NAT
+
+- Cloud Storage Bucket
+    Named: 'day1-bucket-demo'
+    Used for storing data
+    demo.txt file was uploaded via the gcloud CLI
+
+
+2. Architecture Overview:
+
+               +----------------------------+
+               |  Cloud Storage Bucket      |
+               |     day1-bucket-demo       |
+               +-------------^--------------+
+                             |
+                  +----------+----------+
+                  |   VM Instance        |
+                  |     demo-instance     |   
+                  +----------^----------+
+                             |
+                  +----------+----------+
+                  |  Custom VPC          |
+                  |  10.0.1.0/24         |
+                  +----------------------+
+
+3. Description:
+- The VM (demo-vm) is deployed inside the custom VPC, within a defined subnet (10.0.1.0/24).
+- The custom VPC ensures isolated and controlled network communication.
+- The VM accesses the Cloud Storage bucket using GCP’s internal API to read or serve static content (e.g., web files or data).
+- Firewall rules allow traffic (e.g., HTTP/HTTPS) to reach the VM from external sources if configured.
+- The custom subnet supports future scaling with more VMs, private IP control, and additional security layers.
+
+4. Purpose:
+This mini architecture demonstrates basic compute, storage, and networking setup in GCP, ideal for small web applications or backend services.
+
