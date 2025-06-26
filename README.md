@@ -1,5 +1,7 @@
 # pi-shaped-workshop-GCP-Mansi
 
+DAY-1
+
 1. Why would a startup choose GCP over other providers for compute and storage?
   - Generous Free Tier and Startup Credits:
    GCP offers a free tier that includes: 1 f1-micro VM per month (in some regions), 5 GB of regional Cloud Storage.
@@ -47,4 +49,41 @@
       2. Regions = Disaster recovery
          Using multiple regions helps survive regional outages.
 
+DAY-2
+
+1. Why is it dangerous to assign Editor role to all users in a production environment?
+
+  Assigning the Editor role (roles/editor) to all users in a production environment is dangerous because it violates the principle of least privilege and exposes your environment to multiple risks.
+  -  Accidental deletion or Misconfiguration
+  - Auditability & Compliance Issues
+  - Increases Attack Surface
+
+2. How do service accounts differ from user accounts in managing backend services?
+
+  -Purpose
+
+    1. Service Account: Used by applications, VMs, and services (non-human).
+
+    2. User Account: Used by people to interact with GCP (human identity).
+
+  - Authentication
+
+  1. Service Account: Authenticates via keys or workload identity (no login needed).
+
+2. User Account: Authenticates via Google login (email, password, 2FA).
+
+  - Access Management
+
+  1. Service Account: Scoped, automated, least privilege by design.
+
+  2. User Account: Broader access, tied to a person — riskier for automation.
+
+
+3. What practices help secure IAM in a multi-project GCP setup?
+  - Use Organizations and Folders
+  - Apply the Principle of Least Privilege
+  - Use IAM Groups Instead of Individual Users
+  - Use Service Accounts Correctly
+  - Audit and Monitor IAM Policies
+  - Use Conditions with IAM Policies
 

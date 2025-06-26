@@ -1,0 +1,33 @@
+Document the difference between primitive, predefined, and custom roles?
+
+1. Primitive Roles
+Basic legacy roles that apply broad permissions across all Google Cloud services.
+
+Roles:
+- roles/owner — Full control, including managing IAM.
+- roles/editor — Modify most resources (cannot manage IAM).
+- roles/viewer — Read-only access to all resources.
+
+Use Case: Rarely recommended in production due to overly broad access.
+Risk: High risk of privilege escalation and accidental changes.
+
+2. Predefined Roles
+Roles created and maintained by Google for specific services or tasks.
+
+Examples:
+- roles/compute.admin — Full access to Compute Engine.
+- roles/storage.objectViewer — Read-only access to GCS objects.
+- roles/logging.logWriter — Can write logs.
+
+Use Case: Ideal for assigning task- or service-specific permissions with the principle of least privilege.
+Benefit: Regularly updated by Google to match service capabilities.
+
+3. Custom Roles
+User-defined roles that combine specific permissions across one or more services.
+
+Example:
+A role with only: compute.instances.list, compute.instances.get.
+
+Use Case: When predefined roles are too broad or too narrow.
+Benefit: Tailored access control; great for compliance and least privilege enforcement.
+
