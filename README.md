@@ -87,3 +87,112 @@ DAY-2
   - Audit and Monitor IAM Policies
   - Use Conditions with IAM Policies
 
+DAY-3
+
+  1. What is the difference between declartive iac and imperative scripting ?
+    - Declarative Infrastructure as Code (IaC)
+      Describes the desired end state of the infrastructure (e.g., “a VM should exist”).
+
+      Does not specify how to achieve that state — the tool figures it out.
+
+      Tools like Terraform, CloudFormation, or Pulumi (declarative mode) follow this model.
+
+      Idempotent by design — reapplying the same code won’t cause changes if the state is already correct.
+
+      Maintains a state file to track the current state of the infrastructure.
+
+      Easier to audit and review, since the code clearly shows intended outcomes.
+
+      Great for team collaboration, because it avoids hidden logic and is more predictable.
+
+
+    - Imperative Scripting
+      Specifies exact steps to create or modify infrastructure (e.g., “run this command to create a VM”).
+
+      The script controls how things are done, step by step.
+
+      Examples include using Bash, Python, or tools like gcloud, awscli, or manual API calls.
+
+      No built-in state tracking — the script has no memory of what's already deployed.
+
+      Can be harder to make idempotent — requires manual checks to avoid duplication.
+
+      More prone to human error if steps are missed or executed out of order.
+
+  2. Why is terraform state important and how can it become a security risk?
+      IMPORTANCE
+        - Tracks current infrastructure and resource metadata.
+        - Allows Terraform to detect what’s changed since the last apply.
+        - Enables efficient, incremental updates to infrastructure.
+        -  Maintains resource dependencies and relationships.
+        - Required to generate accurate plans and safely destroy resources.
+        - Supports remote collaboration by sharing state across teams.
+
+      RISK
+        - May contain sensitive data like passwords, keys, and connection strings.
+        - Local state files are unencrypted by default.
+        - Remote state storage can be exposed if access controls are weak.
+        - State files accidentally committed to version control can leak secrets.
+        - Attackers with access can gather detailed infrastructure info for reconnaissance.
+
+  3. In what scenario should a team use Terraform over manual provisioning?
+        - For reliable, repeatable, and scalable infrastructure management
+        - To automate deployments and reduce human errors
+        - To enable collaboration across teams and environments
+        - To track infrastructure changes with version control
+        - To maintain clear audit trails of all modifications
+        - For seamless integration with CI/CD pipelines
+        - To manage complex or multi-cloud environments confidently and efficiently
+
+DAY-4
+
+  1. What are the advantages of using Terraform modules in a microservice-oriented product team? 
+    - Reusability Across Services
+    - Consistency & Standardization
+    - Faster Onboarding
+    - Version Control & Change Management
+    - Scalability & Collaboration
+
+  2. How do workspaces simplify multi-environment deployments?
+    - Isolated State Files: Each workspace (dev, staging, prod) has its own separate state.
+
+    - Single Codebase: Reuse the same Terraform code for all environments.
+
+    - Safe Environment Switching: Easily switch with terraform workspace select <env>.
+
+    - Avoid Mistakes: Prevents deploying dev changes to prod by accident.
+
+    - Clean CI/CD Pipelines: Use the same pipeline logic with different workspaces and .tfvars.
+
+    - Automatic State Separation in Remote Backend: Remote backends (like GCS) store state under workspace-specific paths.
+
+  3. Why is storing state remotely better than keeping it local, especially in a team setup?
+    - Shared Access
+
+      1. Team members can access the same state file across machines.
+
+      2. Everyone works with the latest infrastructure state.
+
+    - State Locking
+
+      1. Prevents concurrent changes (e.g., via DynamoDB or GCS locking).
+
+      2. Avoids race conditions and broken deployments.
+
+    - Disaster Recovery
+
+      1. Remote state is backed up and versioned automatically.
+
+      2. Easy to recover from accidental changes or corruption.
+
+    - Automation-Friendly
+
+      1. CI/CD pipelines need centralized state to apply changes reliably.
+
+      2. Security & Auditing
+
+    - Remote backends support access control, encryption, and audit logs.
+
+      1. Avoids Local Pitfalls
+
+      2. Local state can get lost, overwritten, or misaligned across machines.
