@@ -60,23 +60,23 @@ DAY-2
 
 2. How do service accounts differ from user accounts in managing backend services?
 
-  -Purpose
+  - Purpose
 
-    1. Service Account: Used by applications, VMs, and services (non-human).
-
-    2. User Account: Used by people to interact with GCP (human identity).
+      1. Service Account: Used by applications, VMs, and services (non-human).
+  
+      2. User Account: Used by people to interact with GCP (human identity).
 
   - Authentication
 
-  1. Service Account: Authenticates via keys or workload identity (no login needed).
-
-2. User Account: Authenticates via Google login (email, password, 2FA).
+      1. Service Account: Authenticates via keys or workload identity (no login needed).
+    
+      2. User Account: Authenticates via Google login (email, password, 2FA).
 
   - Access Management
 
-  1. Service Account: Scoped, automated, least privilege by design.
-
-  2. User Account: Broader access, tied to a person — riskier for automation.
+      1. Service Account: Scoped, automated, least privilege by design.
+    
+      2. User Account: Broader access, tied to a person — riskier for automation.
 
 
 3. What practices help secure IAM in a multi-project GCP setup?
