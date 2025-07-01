@@ -13,9 +13,7 @@ resource "google_compute_instance" "vm_instance" {
   network_interface {
     network = "default"
 
-    access_config {
-      # This allocates a public IP
-    }
+    access_config {}
   }
 }
 

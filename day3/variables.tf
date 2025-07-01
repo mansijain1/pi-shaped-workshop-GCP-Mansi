@@ -18,6 +18,8 @@ variable "zone" {
 variable "instance_name" {
   description = "Name of the VM instance"
   type        = string
+  default     = "mydemo-instance"
+
 }
 
 variable "machine_type" {
@@ -29,4 +31,6 @@ variable "machine_type" {
 variable "bucket_name" {
   description = "Name of the GCS bucket"
   type        = string
+  default     = "my-bucket1"
+
 }
